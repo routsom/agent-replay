@@ -1,0 +1,69 @@
+{
+  "session": {
+    "id": "test-session-001",
+    "name": "golden-fixture",
+    "framework": "anthropic",
+    "model": "claude-sonnet-4-6",
+    "started_at": "2026-05-01T10:00:00",
+    "ended_at": "2026-05-01T10:00:05",
+    "status": "completed",
+    "tags": ["test", "golden"],
+    "metadata": {"env": "ci"},
+    "total_input_tokens": 150,
+    "total_output_tokens": 200,
+    "total_cost_usd": 0.00345
+  },
+  "steps": [
+    {
+      "id": "step-001",
+      "session_id": "test-session-001",
+      "sequence": 0,
+      "type": "llm_call",
+      "started_at": "2026-05-01T10:00:00",
+      "ended_at": "2026-05-01T10:00:02",
+      "latency_ms": 2000,
+      "input": {"prompt": "Hello, how are you?"},
+      "output": {"text": "I'm doing well, thank you for asking!"},
+      "input_tokens": 50,
+      "output_tokens": 80,
+      "cost_usd": 0.00135,
+      "error": null,
+      "annotation": null,
+      "verdict": null
+    },
+    {
+      "id": "step-002",
+      "session_id": "test-session-001",
+      "sequence": 1,
+      "type": "tool_call",
+      "started_at": "2026-05-01T10:00:02",
+      "ended_at": "2026-05-01T10:00:03",
+      "latency_ms": 1000,
+      "input": {"tool": "search", "query": "weather today"},
+      "output": {"result": "Sunny, 22°C"},
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "error": null,
+      "annotation": null,
+      "verdict": null
+    },
+    {
+      "id": "step-003",
+      "session_id": "test-session-001",
+      "sequence": 2,
+      "type": "llm_call",
+      "started_at": "2026-05-01T10:00:03",
+      "ended_at": "2026-05-01T10:00:05",
+      "latency_ms": 2000,
+      "input": {"prompt": "Based on the search results, what's the weather?"},
+      "output": {"text": "It's sunny and 22°C today."},
+      "input_tokens": 100,
+      "output_tokens": 120,
+      "cost_usd": 0.0021,
+      "error": null,
+      "annotation": "Good response",
+      "verdict": "pass"
+    }
+  ]
+}

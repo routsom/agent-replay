@@ -1,0 +1,22 @@
+{
+  "name": "agent-replay",
+  "version": "0.1.0",
+  "description": "Dead-simple, local-first, framework-agnostic agent observability for TypeScript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4",
+    "@types/better-sqlite3": "^7",
+    "vitest": "^1"
+  },
+  "keywords": ["ai", "agent", "observability", "tracing", "llm", "replay"],
+  "license": "MIT"
+}
