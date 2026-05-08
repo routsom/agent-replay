@@ -11,6 +11,7 @@ dist/
 *.egg
 MANIFEST
 
+
 # Virtual environments
 .venv/
 venv/
@@ -60,6 +61,9 @@ dist/
 *.db
 *.db-wal
 *.db-shm
+
+# Internal AI assistant instructions (not for public consumption)
+CLAUDE.md
 
 # Secrets / env
 .env
