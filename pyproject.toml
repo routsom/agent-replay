@@ -44,6 +44,9 @@ Homepage = "https://github.com/routsom/agent-replay"
 Repository = "https://github.com/routsom/agent-replay"
 Issues = "https://github.com/routsom/agent-replay/issues"
 
+[tool.hatch.build.targets.wheel]
+packages = ["agent_replay"]
+
 [tool.ruff]
 target-version = "py311"
 line-length = 100
