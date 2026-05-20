@@ -34,7 +34,7 @@ dependencies = [
 anthropic = ["anthropic>=0.30"]
 openai = ["openai>=1.30"]
 langchain = ["langchain-core>=0.2"]
-dev = ["pytest", "mypy", "ruff", "pytest-cov"]
+dev = ["pytest", "mypy", "ruff", "pytest-cov", "types-PyYAML"]
 
 [project.scripts]
 agent-replay = "agent_replay.cli.main:app"
