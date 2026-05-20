@@ -8,6 +8,7 @@ from __future__ import annotations
 import logging
 import os
 from pathlib import Path
+from typing import Any, cast
 
 import yaml
 
@@ -39,12 +40,16 @@ def load_pricing(path: str | None = None) -> dict[str, dict[str, dict[str, float
 
     try:
         with open(manifest_path) as f:
-            raw = yaml.safe_load(f)
+            raw: Any = cast(Any, yaml.safe_load(f))
     except FileNotFoundError:
         logger.warning("agent-replay: pricing manifest not found at %s", manifest_path)
         return {}
     except yaml.YAMLError as e:
         logger.warning("agent-replay: failed to parse pricing manifest: %s", e)
+        return {}
+
+    if not isinstance(raw, dict):
+        logger.warning("agent-replay: pricing manifest has unexpected structure")
         return {}
 
     providers: dict[str, dict[str, dict[str, float]]] = raw.get("providers", {})

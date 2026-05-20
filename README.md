@@ -4,8 +4,9 @@
 
 **One decorator. One SQLite file. Full tracing. No server. No cloud account. Zero infrastructure.**
 
-[![PyPI version](https://img.shields.io/pypi/v/agent-replay?color=blue)](https://pypi.org/project/agent-replay/)
-[![Python](https://img.shields.io/pypi/pyversions/agent-replay)](https://pypi.org/project/agent-replay/)
+[![CI](https://github.com/routsom/agent-replay/actions/workflows/ci.yml/badge.svg)](https://github.com/routsom/agent-replay/actions/workflows/ci.yml)
+[![PyPI version](https://img.shields.io/pypi/v/sr-agent-replay?color=blue)](https://pypi.org/project/sr-agent-replay/)
+[![Python](https://img.shields.io/pypi/pyversions/sr-agent-replay)](https://pypi.org/project/sr-agent-replay/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-63%20passed-brightgreen)](tests/)
 [![mypy](https://img.shields.io/badge/mypy-strict-blue)](https://mypy.readthedocs.io/)
@@ -101,15 +102,15 @@
 ## Install
 
 ```bash
-pip install agent-replay
+pip install sr-agent-replay
 ```
 
 With a specific provider:
 
 ```bash
-pip install "agent-replay[anthropic]"
-pip install "agent-replay[openai]"
-pip install "agent-replay[langchain]"
+pip install "sr-agent-replay[anthropic]"
+pip install "sr-agent-replay[openai]"
+pip install "sr-agent-replay[langchain]"
 ```
 
 ---
@@ -202,9 +203,9 @@ Override with `AGENT_REPLAY_DB=/path/to/custom.db`.
 
 | Framework | Install | Usage |
 |---|---|---|
-| **Anthropic** | `pip install "agent-replay[anthropic]"` | `ReplayClient(Anthropic(), ...)` |
-| **OpenAI** | `pip install "agent-replay[openai]"` | `ReplayClient(OpenAI(), ...)` |
-| **LangChain** | `pip install "agent-replay[langchain]"` | `ReplayCallbackHandler(...)` |
+| **Anthropic** | `pip install "sr-agent-replay[anthropic]"` | `ReplayClient(Anthropic(), ...)` |
+| **OpenAI** | `pip install "sr-agent-replay[openai]"` | `ReplayClient(OpenAI(), ...)` |
+| **LangChain** | `pip install "sr-agent-replay[langchain]"` | `ReplayCallbackHandler(...)` |
 | **Google ADK** | included | `ReplayEventHandler(...)` |
 | **CrewAI** | included | `ReplayObserver(...)` |
 | **TypeScript** | `npm install agent-replay` | `new Recorder({ ... })` |

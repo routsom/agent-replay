@@ -24,7 +24,14 @@ def export_jsonl(session: Session, out: TextIO | None = None) -> str:
     Returns:
         The JSONL string if no output file is provided.
     """
-    buf = out or StringIO()
+    buf: TextIO
+    str_buf: StringIO | None
+    if out is None:
+        str_buf = StringIO()
+        buf = str_buf
+    else:
+        str_buf = None
+        buf = out
 
     # Write session header as first line
     session_dict = {
@@ -66,9 +73,8 @@ def export_jsonl(session: Session, out: TextIO | None = None) -> str:
         }
         buf.write(json.dumps(step_dict, default=str) + "\n")
 
-    if out is None:
-        assert isinstance(buf, StringIO)
-        return buf.getvalue()
+    if str_buf is not None:
+        return str_buf.getvalue()
     return ""
 
 
@@ -82,7 +88,14 @@ def export_html(session: Session, out: TextIO | None = None) -> str:
     Returns:
         The HTML string if no output file is provided.
     """
-    buf = out or StringIO()
+    buf: TextIO
+    str_buf: StringIO | None
+    if out is None:
+        str_buf = StringIO()
+        buf = str_buf
+    else:
+        str_buf = None
+        buf = out
 
     cost_str = f"${session.total_cost_usd:.4f}"
     total_tokens = session.total_input_tokens + session.total_output_tokens
@@ -305,7 +318,6 @@ def export_html(session: Session, out: TextIO | None = None) -> str:
 
     buf.write(report)
 
-    if out is None:
-        assert isinstance(buf, StringIO)
-        return buf.getvalue()
+    if str_buf is not None:
+        return str_buf.getvalue()
     return ""

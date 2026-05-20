@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "agent-replay"
+name = "sr-agent-replay"
 version = "0.1.0"
 description = "Dead-simple, local-first, framework-agnostic agent observability. One decorator, one SQLite file, full tracing."
 readme = "README.md"

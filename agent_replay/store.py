@@ -265,7 +265,7 @@ class Store:
             # Annotate the session by storing in metadata
             session = self.get_session(session_id, include_steps=False)
             if session:
-                meta = dict(session.metadata) if session.metadata else {}
+                meta: dict[str, Any] = dict(session.metadata) if session.metadata else {}
                 if note is not None:
                     meta["annotation"] = note
                 if verdict is not None:
@@ -296,7 +296,9 @@ class Store:
         tags_raw = _deserialize(str(row[7]))
         tags = tags_raw if isinstance(tags_raw, list) else []
         metadata_raw = _deserialize(str(row[8]))
-        metadata = metadata_raw if isinstance(metadata_raw, dict) else {}
+        metadata: dict[str, Any] = (
+            {str(k): v for k, v in metadata_raw.items()} if isinstance(metadata_raw, dict) else {}
+        )
         return Session(
             id=str(row[0]),
             name=str(row[1]) if row[1] else None,
@@ -306,7 +308,7 @@ class Store:
             ended_at=datetime.fromisoformat(str(row[5])) if row[5] else None,
             status=str(row[6]),
             tags=[str(t) for t in tags],
-            metadata={str(k): v for k, v in metadata.items()},
+            metadata=metadata,
             total_input_tokens=int(row[9]) if row[9] else 0,
             total_output_tokens=int(row[10]) if row[10] else 0,
             total_cost_usd=float(row[11]) if row[11] else 0.0,
@@ -316,9 +318,13 @@ class Store:
     def _row_to_step(row: Any) -> Step:
         """Convert a raw DB row to a Step dataclass."""
         input_raw = _deserialize(str(row[7]))
-        input_dict = input_raw if isinstance(input_raw, dict) else {}
+        input_dict: dict[str, Any] = (
+            {str(k): v for k, v in input_raw.items()} if isinstance(input_raw, dict) else {}
+        )
         output_raw = _deserialize(str(row[8]))
-        output_dict = output_raw if isinstance(output_raw, dict) else {}
+        output_dict: dict[str, Any] = (
+            {str(k): v for k, v in output_raw.items()} if isinstance(output_raw, dict) else {}
+        )
         return Step(
             id=str(row[0]),
             session_id=str(row[1]),
@@ -327,8 +333,8 @@ class Store:
             started_at=datetime.fromisoformat(str(row[4])),
             ended_at=datetime.fromisoformat(str(row[5])) if row[5] else None,
             latency_ms=int(row[6]) if row[6] is not None else None,
-            input=dict(input_dict),
-            output=dict(output_dict),
+            input=input_dict,
+            output=output_dict,
             input_tokens=int(row[9]) if row[9] is not None else 0,
             output_tokens=int(row[10]) if row[10] is not None else 0,
             cost_usd=float(row[11]) if row[11] is not None else 0.0,
